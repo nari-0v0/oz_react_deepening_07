@@ -10,10 +10,12 @@ import { useEffect, useState } from "react";
  * - 현재 시간을 "HH:mm:ss" 형식으로 표시합니다.
  * - 시계가 실행 중일 때 매초마다 시간을 업데이트합니다.
  **/
-function Clock() {
+function Clock({running}) {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
+    if (!running) return;
+
     const timerId = setInterval(() => {
       setTime(new Date());
     }, 1000);
@@ -21,10 +23,10 @@ function Clock() {
     return () => {
       clearInterval(timerId);
     }
-  }, []);
+  }, [running]);
 
     const format = (n) => String(n).padStart(2, '0');
-    const formattedTime = `${format(time.getHours())}:${format(time.getMinutes())}:${format(time.getSeconds)}`;
+    const formattedTime = `${format(time.getHours())}:${format(time.getMinutes())}:${format(time.getSeconds())}`;
 
 
   return (

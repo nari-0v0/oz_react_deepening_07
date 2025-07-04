@@ -31,7 +31,7 @@ function App() {
         <button onClick={handleComponentToggle}>
           {componentRunning ? '컴포넌트 정지' : '컴포넌트 시작'}
         </button>
-        {componentRunning && <Clock />}
+        <Clock running={componentRunning}/>
       </div>
     </>
   );
